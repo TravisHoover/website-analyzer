@@ -1,5 +1,6 @@
 import React, {Component} from 'react';
-import {StyleSheet, Text, View} from 'react-native';
+import {StyleSheet, TextInput, Text, View, ActivityIndicator} from 'react-native';
+import { Button } from './js/common/Button'
 
 const styles = StyleSheet.create({
 	container: {
@@ -11,6 +12,7 @@ const styles = StyleSheet.create({
 	instructions: {
 		color: '#333333',
 		marginBottom: 5,
+		height: 40,
 		textAlign: 'center',
 	},
 	welcome: {
@@ -20,15 +22,68 @@ const styles = StyleSheet.create({
 	},
 });
 
-export default class Intro extends Component {
+export default class App extends Component {
+	constructor(){
+		console.log('constructor');
+		super();
+		this.state = {
+			website: '',
+			done: false,
+			techs: [],
+		}
+	}
+
+	analyze(website) {
+		fetch(`https://api.letsvalidate.com/v1/technologies/?url=${website}`)
+			.then((response) => response.json())
+			.then((response) => {
+				let req = response.applications.map(application => {
+					return application.name
+				});
+				Promise.all(req).then((results) => {
+					this.setState({techs: results, done: true});
+					return(
+						<Text>{results}</Text>
+					)
+				})
+			})
+	}
+
+	clear() {
+		this.setState({website: '', done: false, techs: []})
+	}
+
 	render() {
-		return (
-			<View style={styles.container}>
-				<Text style={styles.welcome}>Welcome to React Native!</Text>
-				<Text style={styles.instructions}>
-					This is a React Native snapshot test.
-				</Text>
-			</View>
-		);
+		if (!this.state.done) {
+			return (
+				<View style={styles.container}>
+					<TextInput
+						style={styles.instructions}
+						placeholder="Enter website to be analyzed"
+						onChangeText={(website) => this.setState({website})}
+					/>
+					<Button onPress={() => this.analyze(this.state.website)}>
+						Analyze
+					</Button>
+				</View>
+			);
+		} else if (this.state.techs) {
+			return(
+				<View>
+					{this.state.techs.map((item, key) => (
+						<Text key={key}> {item}</Text>
+					))}
+					<Button onPress={() => this.clear()}>
+						Scan again
+					</Button>
+				</View>
+			)
+		} else {
+			return(
+				<View>
+					<ActivityIndicator/>
+				</View>
+			)
+		}
 	}
 }
