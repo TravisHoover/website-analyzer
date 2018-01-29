@@ -1,8 +1,9 @@
 import React, {Component} from 'react';
 import {StyleSheet, TextInput, Text, View, ActivityIndicator} from 'react-native';
+//import { Styles } from './Styles'
 import { Button } from './js/common/Button'
 
-const styles = StyleSheet.create({
+const Styles = StyleSheet.create({
 	container: {
 		alignItems: 'center',
 		backgroundColor: '#F5FCFF',
@@ -24,29 +25,30 @@ const styles = StyleSheet.create({
 
 export default class App extends Component {
 	constructor(){
-		console.log('constructor');
 		super();
 		this.state = {
 			website: '',
 			done: false,
 			techs: [],
+			loading: false,
 		}
 	}
 
 	analyze(website) {
-		fetch(`https://api.letsvalidate.com/v1/technologies/?url=${website}`)
-			.then((response) => response.json())
-			.then((response) => {
-				let req = response.applications.map(application => {
-					return application.name
-				});
-				Promise.all(req).then((results) => {
-					this.setState({techs: results, done: true});
-					return(
-						<Text>{results}</Text>
-					)
+		this.setState({loading: true});
+			fetch(`https://api.letsvalidate.com/v1/technologies/?url=${website}`)
+				.then((response) => response.json())
+				.then((response) => {
+					let req = response.applications.map(application => {
+						return application.name
+					});
+					Promise.all(req).then((results) => {
+						this.setState({techs: results, done: true, loading: false});
+						return(
+							<Text>{results}</Text>
+						)
+					})
 				})
-			})
 	}
 
 	clear() {
@@ -54,11 +56,11 @@ export default class App extends Component {
 	}
 
 	render() {
-		if (!this.state.done) {
+		if (!this.state.done && !this.state.loading) {
 			return (
-				<View style={styles.container}>
+				<View style={Styles.container}>
 					<TextInput
-						style={styles.instructions}
+						style={Styles.instructions}
 						placeholder="Enter website to be analyzed"
 						onChangeText={(website) => this.setState({website})}
 					/>
@@ -67,7 +69,7 @@ export default class App extends Component {
 					</Button>
 				</View>
 			);
-		} else if (this.state.techs) {
+		} else if (this.state.done && this.state.techs && !this.state.loading) {
 			return(
 				<View>
 					{this.state.techs.map((item, key) => (
