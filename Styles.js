@@ -3,14 +3,20 @@ import React, { StyleSheet } from 'react-native';
 const Styles = StyleSheet.create({
 	container: {
 		alignItems: 'center',
-		backgroundColor: '#F5FCFF',
+		backgroundColor: '#515151',
 		flex: 1,
 		justifyContent: 'center',
 	},
 	instructions: {
-		color: '#333333',
+		color: '#f4f5ff',
 		marginBottom: 5,
-		height: 40,
+		height: 45,
+		width : '85%',
+		textAlign: 'center',
+	},
+	results: {
+		color: '#f4f5ff',
+		height: 45,
 		textAlign: 'center',
 	},
 	welcome: {

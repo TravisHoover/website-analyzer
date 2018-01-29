@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import {StyleSheet, TextInput, Text, View, ActivityIndicator} from 'react-native';
+import {ScrollView, TextInput, Text, View, ActivityIndicator} from 'react-native';
 import styles from './Styles'
 import { Button } from './js/common/Button'
 
@@ -11,6 +11,7 @@ export default class App extends Component {
 			done: false,
 			techs: [],
 			loading: false,
+			error: null,
 		}
 	}
 
@@ -19,6 +20,9 @@ export default class App extends Component {
 			fetch(`https://api.letsvalidate.com/v1/technologies/?url=${website}`)
 				.then((response) => response.json())
 				.then((response) => {
+					if (response.error){
+						this.setState({error: response.error.message})
+					}
 					let req = response.applications.map(application => {
 						return application.name
 					});
@@ -32,7 +36,13 @@ export default class App extends Component {
 	}
 
 	clear() {
-		this.setState({website: '', done: false, techs: []})
+		this.setState({
+			website: '',
+			done: false,
+			techs: [],
+			loading: false,
+			error: null
+		})
 	}
 
 	render() {
@@ -42,6 +52,7 @@ export default class App extends Component {
 					<TextInput
 						style={styles.instructions}
 						placeholder="Enter website to be analyzed"
+						placeholderTextColor="white"
 						onChangeText={(website) => this.setState({website})}
 					/>
 					<Button onPress={() => this.analyze(this.state.website)}>
@@ -51,10 +62,25 @@ export default class App extends Component {
 			);
 		} else if (this.state.done && this.state.techs && !this.state.loading) {
 			return(
-				<View>
-					{this.state.techs.map((item, key) => (
-						<Text key={key}> {item}</Text>
-					))}
+				<View style={styles.container}>
+					<ScrollView contentContainerStyle={styles.container}>
+						{this.state.techs.map((item, key) => (
+							<Text key={key} style={styles.results}>
+								{item}
+							</Text>
+						))}
+					</ScrollView>
+					<Button onPress={() => this.clear()}>
+						Scan again
+					</Button>
+				</View>
+			)
+		} else if(this.state.error) {
+			return(
+				<View style={styles.container}>
+					<Text style={styles.results}>
+						{this.state.error}
+					</Text>
 					<Button onPress={() => this.clear()}>
 						Scan again
 					</Button>
@@ -62,8 +88,8 @@ export default class App extends Component {
 			)
 		} else {
 			return(
-				<View>
-					<ActivityIndicator/>
+				<View style={styles.container}>
+					<ActivityIndicator size="large"/>
 				</View>
 			)
 		}
