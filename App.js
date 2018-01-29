@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import {ScrollView, TextInput, Text, View, ActivityIndicator} from 'react-native';
+import {ScrollView, TextInput, Text, Image, View, ActivityIndicator} from 'react-native';
 import styles from './Styles'
 import { Button } from './js/common/Button'
 
@@ -49,6 +49,10 @@ export default class App extends Component {
 		if (!this.state.done && !this.state.loading) {
 			return (
 				<View style={styles.container}>
+					<Image
+						style={styles.logo}
+						source={require('./icon.png')}
+					/>
 					<TextInput
 						style={styles.instructions}
 						placeholder="Enter website to be analyzed"
