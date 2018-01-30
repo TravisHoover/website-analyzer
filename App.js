@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import {ScrollView, TextInput, Text, Image, View, ActivityIndicator} from 'react-native';
+import {ScrollView, TouchableOpacity, TextInput, Text, Image, View, ActivityIndicator} from 'react-native';
 import styles from './Styles'
 import { Button } from './js/common/Button'
 
@@ -66,9 +66,11 @@ export default class App extends Component {
 				<View style={styles.container}>
 					<ScrollView contentContainerStyle={styles.container}>
 						{this.state.techs.map((item, key) => (
-							<Text key={key} style={styles.results}>
+							<TouchableOpacity key={key} style={styles.results}>
+							<Text style={styles.textStyle}>
 								{item}
 							</Text>
+							</TouchableOpacity>
 						))}
 					</ScrollView>
 					<Button onPress={() => this.clear()}>

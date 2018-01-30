@@ -7,6 +7,7 @@ const Styles = StyleSheet.create({
 		flex: 1,
 		justifyContent: 'center',
 		paddingBottom: 30,
+		paddingTop: 30,
 	},
 	instructions: {
 		color: '#f4f5ff',
@@ -16,15 +17,15 @@ const Styles = StyleSheet.create({
 		textAlign: 'center',
 	},
 	results: {
-		color: '#f4f5ff',
 		backgroundColor: '#15259e',
-		height: 45,
 		width: 200,
-		marginBottom: 10,
-		borderTopLeftRadius: 1,
-		borderTopRightRadius: 1,
-		borderRadius: 5,
-		textAlign: 'center',
+		borderRadius: 7,
+		marginTop: 5,
+		marginBottom: 5,
+		marginLeft: 5,
+		marginRight: 5,
+		paddingTop: 9,
+		paddingBottom: 9
 	},
 	welcome: {
 		fontSize: 20,
