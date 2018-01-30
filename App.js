@@ -16,6 +16,10 @@ export default class App extends Component {
 	}
 
 	analyze(website) {
+		let match = website.match(/:\/\/(www[0-9]?\.)?(.[^/:]+)/i);
+		website = (match != null && match.length > 2 && typeof match[2] === 'string' && match[2].length > 0)
+			? match[2]
+			: website;
 		this.setState({loading: true});
 			fetch(`https://api.letsvalidate.com/v1/technologies/?url=${website}`)
 				.then((response) => response.json())
