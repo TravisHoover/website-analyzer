@@ -9,6 +9,9 @@ const Styles = StyleSheet.create({
 		paddingBottom: 30,
 		paddingTop: 30,
 	},
+	scrollContainer: {
+		width: '100%',
+	},
 	instructions: {
 		color: '#f4f5ff',
 		marginBottom: 5,
@@ -19,7 +22,8 @@ const Styles = StyleSheet.create({
 	results: {
 		backgroundColor: '#15259e',
 		width: 200,
-		borderRadius: 7,
+		borderTopRightRadius: 30,
+		borderTopLeftRadius: 30,
 		marginTop: 5,
 		marginBottom: 5,
 		marginLeft: 5,
@@ -37,7 +41,7 @@ const Styles = StyleSheet.create({
 		width: 300,
 		borderColor: 'white',
 		borderWidth: 4,
-		borderRadius: 1,
+		borderRadius: 10,
 		marginTop: 5,
 		marginBottom: 5,
 		marginLeft: 5,
@@ -51,7 +55,7 @@ const Styles = StyleSheet.create({
 		fontSize: 20,
 		fontWeight: '800',
 		paddingTop: 10,
-		paddingBottom: 10
+		paddingBottom: 10,
 	},
 	logo: {
 		resizeMode: 'center',

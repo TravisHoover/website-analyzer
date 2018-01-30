@@ -64,7 +64,7 @@ export default class App extends Component {
 		} else if (this.state.done && this.state.techs && !this.state.loading) {
 			return(
 				<View style={styles.container}>
-					<ScrollView contentContainerStyle={styles.container}>
+					<ScrollView contentContainerStyle={styles.scrollContainer}>
 						{this.state.techs.map((item, key) => (
 							<TouchableOpacity key={key} style={styles.results}>
 							<Text style={styles.textStyle}>
