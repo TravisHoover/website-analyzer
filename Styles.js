@@ -3,7 +3,7 @@ import React, { StyleSheet } from 'react-native';
 const Styles = StyleSheet.create({
 	container: {
 		alignItems: 'center',
-		backgroundColor: '#515151',
+		backgroundColor: '#5f5f5f',
 		flex: 1,
 		justifyContent: 'center',
 		paddingBottom: 30,
@@ -20,7 +20,7 @@ const Styles = StyleSheet.create({
 		textAlign: 'center',
 	},
 	results: {
-		backgroundColor: '#15259e',
+		backgroundColor: '#1531ff',
 		width: 200,
 		borderTopRightRadius: 30,
 		borderTopLeftRadius: 30,
@@ -40,7 +40,7 @@ const Styles = StyleSheet.create({
 		backgroundColor: '#1531ff',
 		width: 300,
 		borderColor: 'white',
-		borderWidth: 4,
+		borderWidth: 3,
 		borderRadius: 10,
 		marginTop: 5,
 		marginBottom: 5,
