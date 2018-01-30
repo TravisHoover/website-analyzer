@@ -21,16 +21,13 @@ export default class App extends Component {
 				.then((response) => response.json())
 				.then((response) => {
 					if (response.error){
-						this.setState({error: response.error.message})
+						return this.setState({error: response.error.message})
 					}
 					let req = response.applications.map(application => {
 						return application.name
 					});
 					Promise.all(req).then((results) => {
 						this.setState({techs: results, done: true, loading: false});
-						return(
-							<Text>{results}</Text>
-						)
 					})
 				})
 	}
@@ -82,7 +79,7 @@ export default class App extends Component {
 		} else if(this.state.error) {
 			return(
 				<View style={styles.container}>
-					<Text style={styles.results}>
+					<Text style={styles.error}>
 						{this.state.error}
 					</Text>
 					<Button onPress={() => this.clear()}>

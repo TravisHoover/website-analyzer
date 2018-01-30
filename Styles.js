@@ -3,9 +3,10 @@ import React, { StyleSheet } from 'react-native';
 const Styles = StyleSheet.create({
 	container: {
 		alignItems: 'center',
-		backgroundColor: '#374bf8',
+		backgroundColor: '#515151',
 		flex: 1,
 		justifyContent: 'center',
+		paddingBottom: 30,
 	},
 	instructions: {
 		color: '#f4f5ff',
@@ -16,7 +17,13 @@ const Styles = StyleSheet.create({
 	},
 	results: {
 		color: '#f4f5ff',
+		backgroundColor: '#15259e',
 		height: 45,
+		width: 200,
+		marginBottom: 10,
+		borderTopLeftRadius: 1,
+		borderTopRightRadius: 1,
+		borderRadius: 5,
 		textAlign: 'center',
 	},
 	welcome: {
@@ -25,8 +32,9 @@ const Styles = StyleSheet.create({
 		textAlign: 'center',
 	},
 	buttonStyle: {
-		backgroundColor: '#3d3f44',
+		backgroundColor: '#1531ff',
 		width: 300,
+		borderColor: 'white',
 		borderWidth: 4,
 		borderRadius: 1,
 		marginTop: 5,
@@ -38,15 +46,20 @@ const Styles = StyleSheet.create({
 	},
 	textStyle: {
 		alignSelf: 'center',
-		color: '#040302',
+		color: 'white',
 		fontSize: 20,
 		fontWeight: '800',
 		paddingTop: 10,
 		paddingBottom: 10
 	},
 	logo: {
-		borderColor: 'white'
-	}
+		resizeMode: 'center',
+	},
+	error: {
+		color: '#f4f5ff',
+		height: 45,
+		textAlign: 'center',
+	},
 });
 
 export default Styles;
