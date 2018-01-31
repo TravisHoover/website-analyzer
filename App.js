@@ -1,7 +1,9 @@
 import React, {Component} from 'react';
-import {ScrollView, TouchableOpacity, TextInput, Text, Image, View, ActivityIndicator} from 'react-native';
+import {ScrollView, TouchableOpacity, TextInput, Text, Image, View, Linking} from 'react-native';
 import styles from './Styles'
 import { Button } from './js/common/Button'
+import { PacmanIndicator } from 'react-native-indicators';
+import Expand from 'react-native-simple-expand';
 
 export default class App extends Component {
 	constructor(){
@@ -28,7 +30,7 @@ export default class App extends Component {
 						return this.setState({error: response.error.message})
 					}
 					let req = response.applications.map(application => {
-						return application.name
+						return application
 					});
 					Promise.all(req).then((results) => {
 						this.setState({techs: results, done: true, loading: false});
@@ -70,11 +72,31 @@ export default class App extends Component {
 				<View style={styles.container}>
 					<ScrollView contentContainerStyle={styles.scrollContainer}>
 						{this.state.techs.map((item, key) => (
-							<TouchableOpacity key={key} style={styles.results}>
-							<Text style={styles.textStyle}>
-								{item}
-							</Text>
-							</TouchableOpacity>
+							<View key={key}>
+								<TouchableOpacity
+									style={styles.results}
+									onPress={() => {
+										if (this.state.open === item) {
+											this.setState({open: null})
+										} else {
+											this.setState({open: item})
+										}
+									}}>
+										<Text style={styles.textStyle}>
+											{item.name}
+										</Text>
+
+										<Expand value={this.state.open === item}>
+											{/*<Text style={styles.details}>*/}
+												{/*{item.version}*/}
+											{/*</Text>*/}
+											<Text style={styles.details}
+											      onPress={() => Linking.openURL(`${item.website}`)}>
+												{item.website}
+											</Text>
+										</Expand>
+								</TouchableOpacity>
+							</View>
 						))}
 					</ScrollView>
 					<Button onPress={() => this.clear()}>
@@ -96,7 +118,7 @@ export default class App extends Component {
 		} else {
 			return(
 				<View style={styles.container}>
-					<ActivityIndicator size="large"/>
+					<PacmanIndicator color="white" size={150}/>
 				</View>
 			)
 		}
