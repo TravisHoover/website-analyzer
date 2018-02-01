@@ -5,39 +5,91 @@ exports[`renders correctly 1`] = `
   style={
     Object {
       "alignItems": "center",
-      "backgroundColor": "#F5FCFF",
+      "backgroundColor": "#5f5f5f",
       "flex": 1,
       "justifyContent": "center",
+      "paddingBottom": 30,
+      "paddingTop": 30,
     }
   }
 >
-  <Text
-    accessible={true}
-    allowFontScaling={true}
-    ellipsizeMode="tail"
+  <Image
+    source={1}
     style={
       Object {
-        "fontSize": 20,
-        "margin": 10,
-        "textAlign": "center",
+        "marginTop": 20,
+        "resizeMode": "center",
       }
     }
-  >
-    Welcome to React Native!
-  </Text>
-  <Text
-    accessible={true}
+  />
+  <TextInput
     allowFontScaling={true}
-    ellipsizeMode="tail"
+    onChangeText={[Function]}
+    placeholder="Enter website to be analyzed"
+    placeholderTextColor="white"
     style={
       Object {
-        "color": "#333333",
-        "marginBottom": 5,
+        "color": "#f4f5ff",
+        "height": 45,
+        "marginBottom": 6,
         "textAlign": "center",
+        "width": "85%",
       }
     }
+  />
+  <View
+    accessibilityComponentType={undefined}
+    accessibilityLabel={undefined}
+    accessibilityTraits={undefined}
+    accessible={true}
+    collapsable={undefined}
+    hitSlop={undefined}
+    isTVSelectable={true}
+    nativeID={undefined}
+    onLayout={undefined}
+    onResponderGrant={[Function]}
+    onResponderMove={[Function]}
+    onResponderRelease={[Function]}
+    onResponderTerminate={[Function]}
+    onResponderTerminationRequest={[Function]}
+    onStartShouldSetResponder={[Function]}
+    style={
+      Object {
+        "backgroundColor": "#1531ff",
+        "borderColor": "white",
+        "borderRadius": 10,
+        "borderWidth": 3,
+        "marginBottom": 14,
+        "marginLeft": 5,
+        "marginRight": 5,
+        "marginTop": 30,
+        "opacity": 1,
+        "paddingBottom": 9,
+        "paddingTop": 9,
+        "width": 300,
+      }
+    }
+    testID={undefined}
+    tvParallaxProperties={undefined}
   >
-    This is a React Native snapshot test.
-  </Text>
+    <Text
+      accessible={true}
+      allowFontScaling={true}
+      ellipsizeMode="tail"
+      style={
+        Object {
+          "alignSelf": "center",
+          "color": "white",
+          "fontSize": 20,
+          "fontWeight": "800",
+          "paddingBottom": 10,
+          "paddingTop": 10,
+          "textAlign": "center",
+        }
+      }
+    >
+      Analyze
+    </Text>
+  </View>
 </View>
 `;
