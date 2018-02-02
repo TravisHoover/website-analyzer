@@ -4,6 +4,18 @@ import styles from './Styles'
 import { Button } from './js/common/Button'
 import { PacmanIndicator } from 'react-native-indicators';
 import Expand from 'react-native-simple-expand';
+import * as firebase from 'firebase';
+
+// Initialize Firebase
+const config = {
+	apiKey: "AIzaSyAM-zATUpHoSY1FYT_ar3Lf2s26IVM-d10",
+	authDomain: "website-analyzer-e4f1b.firebaseapp.com",
+	databaseURL: "https://website-analyzer-e4f1b.firebaseio.com",
+	projectId: "website-analyzer-e4f1b",
+	storageBucket: "",
+	messagingSenderId: "510936853751"
+};
+firebase.initializeApp(config);
 
 export default class App extends Component {
 	constructor(){
