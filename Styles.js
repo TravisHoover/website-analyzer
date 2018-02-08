@@ -67,8 +67,17 @@ const Styles = StyleSheet.create({
 		alignSelf: 'center',
 	},
 	logo: {
-		resizeMode: 'center',
 		marginTop: 20,
+		marginBottom: 30,
+		width: 200,
+		height: 200,
+		borderRadius: 200/2,
+		backgroundColor: 'white'
+	},
+	logoText: {
+		flex: 1,
+		fontSize: 100,
+		textAlign: 'center',
 	},
 	error: {
 		color: '#f4f5ff',

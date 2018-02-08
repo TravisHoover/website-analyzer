@@ -21,7 +21,7 @@ export default class App extends Component {
 	constructor(){
 		super();
 		this.state = {
-			website: '',
+			website: '{?}',
 			done: false,
 			techs: [],
 			loading: false,
@@ -64,10 +64,16 @@ export default class App extends Component {
 		if (!this.state.done && !this.state.loading) {
 			return (
 				<View style={styles.container}>
-					<Image
-						style={styles.logo}
-						source={require('./icon.png')}
-					/>
+					<View style={styles.logo}>
+						<TextInput
+							style={styles.logoText}
+							placeholder={this.state.website}
+							placeholderTextColor="black"
+							underlineColorAndroid='transparent'
+							onChangeText={(website) => this.setState({website})}
+							fontSize={this.state.website === '{?}' ? 100 : 16}
+						/>
+					</View>
 					<TextInput
 						style={styles.instructions}
 						placeholder="Enter website to be analyzed"
