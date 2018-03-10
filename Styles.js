@@ -68,11 +68,10 @@ const Styles = StyleSheet.create({
 	},
 	logo: {
 		marginTop: 20,
+		resizeMode: 'center',
 		marginBottom: 30,
 		width: 200,
-		height: 200,
-		borderRadius: 200/2,
-		backgroundColor: 'white'
+		height: 200
 	},
 	logoText: {
 		flex: 1,

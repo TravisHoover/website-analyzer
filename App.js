@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import {ScrollView, TouchableOpacity, TextInput, Text, Image, View, Linking} from 'react-native';
+import {ScrollView, TouchableOpacity, TextInput, Text, KeyboardAvoidingView, View, Image, Linking} from 'react-native';
 import styles from './Styles'
 import { Button } from './js/common/Button'
 import { PacmanIndicator } from 'react-native-indicators';
@@ -63,17 +63,11 @@ export default class App extends Component {
 	render() {
 		if (!this.state.done && !this.state.loading) {
 			return (
-				<View style={styles.container}>
-					<View style={styles.logo}>
-						<TextInput
-							style={styles.logoText}
-							placeholder={this.state.website}
-							placeholderTextColor="black"
-							underlineColorAndroid='transparent'
-							onChangeText={(website) => this.setState({website})}
-							fontSize={this.state.website === '{?}' ? 100 : 16}
-						/>
-					</View>
+				<KeyboardAvoidingView behavior="padding" style={styles.container}>
+					<Image
+						style={styles.logo}
+						source={require('./icon.png')}
+					/>
 					<TextInput
 						style={styles.instructions}
 						placeholder="Enter website to be analyzed"
@@ -83,7 +77,7 @@ export default class App extends Component {
 					<Button onPress={() => this.analyze(this.state.website)}>
 						Analyze
 					</Button>
-				</View>
+				</KeyboardAvoidingView>
 			);
 		} else if (this.state.done && this.state.techs && !this.state.loading) {
 			return(
