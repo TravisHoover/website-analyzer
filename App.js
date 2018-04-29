@@ -21,7 +21,7 @@ export default class App extends Component {
 	constructor(){
 		super();
 		this.state = {
-			website: '{?}',
+			website: '',
 			done: false,
 			techs: [],
 			loading: false,
@@ -79,42 +79,55 @@ export default class App extends Component {
 					</Button>
 				</KeyboardAvoidingView>
 			);
-		} else if (this.state.done && this.state.techs && !this.state.loading) {
-			return(
-				<View style={styles.container}>
-					<ScrollView contentContainerStyle={styles.scrollContainer}>
-						{this.state.techs.map((item, key) => (
-							<View key={key}>
-								<TouchableOpacity
-									style={styles.results}
-									onPress={() => {
-										if (this.state.open === item) {
-											this.setState({open: null})
-										} else {
-											this.setState({open: item})
-										}
-									}}>
-										<Text style={styles.textStyle}>
-											{item.name}
-										</Text>
+		} else if (this.state.done && this.state.techs.length > 0 && !this.state.loading) {
+			console.log("succeeded");
+            return (
+                <View style={styles.container}>
+                    <ScrollView contentContainerStyle={styles.scrollContainer}>
+                        {this.state.techs.map((item, key) => (
+                            <View key={key}>
+                                <TouchableOpacity
+                                    style={styles.results}
+                                    onPress={() => {
+                                        if (this.state.open === item) {
+                                            this.setState({open: null})
+                                        } else {
+                                            this.setState({open: item})
+                                        }
+                                    }}>
+                                    <Text style={styles.textStyle}>
+                                        {item.name}
+                                    </Text>
 
-										<Expand value={this.state.open === item}>
-											{/*<Text style={styles.details}>*/}
-												{/*{item.version}*/}
-											{/*</Text>*/}
-											<Text style={styles.details}
-											      onPress={() => Linking.openURL(`${item.website}`)}>
-												{item.website}
-											</Text>
-										</Expand>
-								</TouchableOpacity>
-							</View>
-						))}
-					</ScrollView>
-					<Button onPress={() => this.clear()}>
-						Scan again
-					</Button>
-				</View>
+                                    <Expand value={this.state.open === item}>
+                                        {/*<Text style={styles.details}>*/}
+                                        {/*{item.version}*/}
+                                        {/*</Text>*/}
+                                        <Text style={styles.details}
+                                              onPress={() => Linking.openURL(`${item.website}`)}>
+                                            {item.website}
+                                        </Text>
+                                    </Expand>
+                                </TouchableOpacity>
+                            </View>
+                        ))}
+                    </ScrollView>
+                    <Button onPress={() => this.clear()}>
+                        Scan again
+                    </Button>
+                </View>
+            )
+        } else if (this.state.done && this.state.techs.length === 0 && !this.state.loading) {
+			console.log("it should be working");
+			return(
+			<View style={styles.container}>
+				<Text style={styles.error}>
+					This website does not allow this request.
+				</Text>
+                <Button onPress={() => this.clear()}>
+                    Scan again
+                </Button>
+			</View>
 			)
 		} else if(this.state.error) {
 			return(
