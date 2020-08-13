@@ -23,7 +23,7 @@
     "firebase": "~4.9.1",
     "react": "16.0.0",
     "react-native": "0.50.3",
-    "react-native-indicators": "~0.10.0",
+    "react-native-indicators": "~0.17.0",
     "react-native-simple-expand": "~0.1.3"
   }
 }
